@@ -8,7 +8,7 @@
 
 int prime_count = 0; // Shared counter for prime numbers
 pthread_mutex_t lock;
-int NUM_THREADS; // Number of threads (dynamic)
+int NUM_THREADS; // Number of threads
 
 // Thread structure
 typedef struct {
