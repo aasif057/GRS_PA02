@@ -2,5 +2,8 @@
 *.out
 *.log
 *.swp
-
+cpu_bound
+memory_bound
+io_bound
+mixed_load
 *.vscode
