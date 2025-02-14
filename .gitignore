@@ -7,3 +7,4 @@ memory_bound
 io_bound
 mixed_load
 *.vscode
+*.data
