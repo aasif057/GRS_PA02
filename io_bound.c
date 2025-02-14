@@ -1,85 +1,82 @@
+#define _GNU_SOURCE  // Required for O_DIRECT
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include <time.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
+#include <errno.h>
+#include <malloc.h>
 
-#define FILE_NAME "test_file.txt"
-#define LINES_COUNT 10000  // Total lines to write
+#define buff_SIZE 4096 
 
-int thread_count;
-pthread_mutex_t lock;
+int n = 50000; //number of lines
+int thread_counts;
 
-// Write Task
-void *write_func(void *arg) {
+void *rw_func(void *arg) {
     int thread_id = *(int *)arg;
+    char filename[50];
+    snprintf(filename, sizeof(filename), "thread_%d.txt", thread_id);
 
-    pthread_mutex_lock(&lock);
-    FILE *fp = fopen(FILE_NAME, "a");
-    if (!fp) {
+    void *buff; // Allocate aligned memory for O_DIRECT
+    
+    if (posix_memalign(&buff, 512, buff_SIZE)) {
+        perror("Memory alignment error");
+        pthread_exit(NULL);
+    }
+    memset(buff, 'A', buff_SIZE - 1);
+    ((char *)buff)[buff_SIZE - 1] = '\n';
+
+    // Open file with O_DIRECT to bypass cache
+    int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC | O_DIRECT, 0644);
+    if (fd < 0) {
         perror("File open error");
-        pthread_mutex_unlock(&lock);
+        free(buff);
         pthread_exit(NULL);
     }
-    for (int i = 0; i < (LINES_COUNT / thread_count); i++) {
-        fprintf(fp, "Thread %d - Line %d\n", thread_id, i);
+
+    // Write file in larger chunks to reduce CPU overhead
+    for (int i = 0; i < n; i += (buff_SIZE / 100)) {
+        if (write(fd, buff, buff_SIZE) < 0) {
+            perror("Write error");
+            break;
+        }
+        fsync(fd);
     }
-    fclose(fp);
-    pthread_mutex_unlock(&lock);
 
-    pthread_exit(NULL);
-}
-
-// Read Task 
-void *read_func(void *arg) {
-    int thread_id = *(int *)arg;
-
-    FILE *fp = fopen(FILE_NAME, "r");
-    if (!fp) {
-        perror("File read error");
-        pthread_exit(NULL);
-    }
-    char buffer[100];
-    while (fgets(buffer, sizeof(buffer), fp)) {
-        // Simulating read operation
-    }
-    fclose(fp);
-
+    free(buff);
+    close(fd);
+    
     pthread_exit(NULL);
 }
 
 int main(int argc, char *argv[]) {
+
     if (argc != 2) {
-        printf("Usage: %s <thread_count>\n", argv[0]);
+        printf("Usage: %s <thread_counts>\n", argv[0]);
         return 1;
     }
 
-    thread_count = atoi(argv[1]);
-    if (thread_count <= 0) {
+    thread_counts = atoi(argv[1]);
+    if (thread_counts <= 0) {
         printf("Invalid number of threads.\n");
         return 1;
     }
 
-    pthread_t threads[thread_count];
-    int thread_ids[thread_count];
-    pthread_mutex_init(&lock, NULL);
+    pthread_t threads[thread_counts];
+    int thread_ids[thread_counts];
 
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
 
-    // Writing Phase (Parallel)
-    for (int i = 0; i < thread_count; i++) {
+    // Create threads
+    for (int i = 0; i < thread_counts; i++) {
         thread_ids[i] = i;
-        pthread_create(&threads[i], NULL, write_func, &thread_ids[i]);
-    }
-    for (int i = 0; i < thread_count; i++) {
-        pthread_join(threads[i], NULL);
+        pthread_create(&threads[i], NULL, rw_func, &thread_ids[i]);
     }
 
-    // Reading Phase (Parallel)
-    for (int i = 0; i < thread_count; i++) {
-        pthread_create(&threads[i], NULL, read_func, &thread_ids[i]);
-    }
-    for (int i = 0; i < thread_count; i++) {
+    // Join threads
+    for (int i = 0; i < thread_counts; i++) {
         pthread_join(threads[i], NULL);
     }
 
@@ -88,6 +85,7 @@ int main(int argc, char *argv[]) {
 
     printf("Execution Time: %f seconds\n", elapsed);
 
-    pthread_mutex_destroy(&lock);
+    sync();
+
     return 0;
 }
