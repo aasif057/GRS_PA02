@@ -1,3 +1,4 @@
+#define _GNU_SOURCE  // Required for O_DIRECT
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -5,48 +6,63 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <string.h>
+#include <errno.h>
+#include <malloc.h>
 
 #define BUFFER_SIZE 4096
-int n = 10000;
-int thread_count;
-int total_sum = 0;
+#define NUM_ENTRIES 10000  // 
 
+int thread_count;
+pthread_mutex_t sum_lock;  // Mutex to lock gloval sum
+int total_sum = 0; 
+
+// function for log processing simulation
 void *write_logs(void *arg) {
     int thread_id = *(int *)arg;
     char f_name[50];
     snprintf(f_name, sizeof(f_name), "log_thread_%d.txt", thread_id);
 
-    // Open file with O_DIRECT to ensure actual disk writes
-    int fd = open(f_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    // Allocate aligned memory for O_DIRECT
+    void *buff;
+    if (posix_memalign(&buff, 512, BUFFER_SIZE)) {
+        perror("Memory alignment error");
+        pthread_exit(NULL);
+    }
+    memset(buff, 'A', BUFFER_SIZE - 1);
+    ((char *)buff)[BUFFER_SIZE - 1] = '\n'; 
+
+    // Open file with O_DIRECT to bypass OS cache
+    int fd = open(f_name, O_WRONLY | O_CREAT | O_TRUNC | O_DIRECT, 0644);
     if (fd < 0) {
         perror("File open error");
+        free(buff);
         pthread_exit(NULL);
     }
 
     // Simulate memory-bound task
-    char buffer[BUFFER_SIZE];
-    int offset = 0;
+    long long local_sum = 0;  
 
-    for (int i = 0; i < n; i++) {
-        int a = rand() % 1000;  // Generate random number
-        total_sum += a;  // Compute sum
-        int len = snprintf(buffer + offset, BUFFER_SIZE - offset, "Thread %d - Value %d\n", thread_id, a);
-        offset += len;
+    for (int i = 0; i < NUM_ENTRIES; i++) {
+        int a = rand() % 1000;  
+        local_sum += a;  // Compute sum locally
 
-        // If buffer is full, write to file
-        if (offset >= BUFFER_SIZE - 100) {
-            write(fd, buffer, offset);
-            offset = 0;  // Reset buffer
+        if (write(fd, buff, BUFFER_SIZE) < 0) {
+            perror("Write error");
+            break;
         }
     }
 
-    // Compute final average and write to file
-    double avg = total_sum / (double)n;
-    offset += snprintf(buffer + offset, BUFFER_SIZE - offset, "Thread %d - Average: %.2f\n", thread_id, avg);
-    write(fd, buffer, offset);
-    
-    fsync(fd);  // Force write to disk
+    char avg_buff[100];
+    int len = snprintf(avg_buff, sizeof(avg_buff), "Thread %d - Average: %.2f\n", thread_id, local_sum / (double)NUM_ENTRIES);
+    write(fd, avg_buff, len);
+
+    fsync(fd); 
     close(fd);
+    free(buff);
+
+    pthread_mutex_lock(&sum_lock);
+    total_sum += local_sum;
+    pthread_mutex_unlock(&sum_lock);
 
     pthread_exit(NULL);
 }
@@ -59,12 +75,13 @@ int main(int argc, char *argv[]) {
 
     thread_count = atoi(argv[1]);
     if (thread_count <= 0) {
-        printf("Invalid aber of threads.\n");
+        printf("Invalid number of threads.\n");
         return 1;
     }
 
     pthread_t threads[thread_count];
     int thread_ids[thread_count];
+    pthread_mutex_init(&sum_lock, NULL);
 
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
@@ -84,5 +101,9 @@ int main(int argc, char *argv[]) {
     double elapsed = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
 
     printf("Execution Time: %f seconds\n", elapsed);
+    printf("Total Sum: %d\n", total_sum);
+
+    pthread_mutex_destroy(&sum_lock);
+    sync();  // Ensure all writes are flushed to disk
     return 0;
 }
