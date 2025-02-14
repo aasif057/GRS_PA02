@@ -4,7 +4,7 @@
 #include <time.h>
 #include <math.h>
 
-#define UPPER_RANGE 500000  // Upper limit for prime checking
+#define UPPER_RANGE 5000000  // Upper limit for prime checking
 
 int count = 0; // Shared counter for prime numbers
 pthread_mutex_t lock;

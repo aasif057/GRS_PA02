@@ -10,7 +10,7 @@
 
 #define BUFFER_SIZE 4096 
 
-int n = 50000; //number of lines
+int n = 10000; //number of lines
 int thread_counts;
 
 void *rw_func(void *arg) {

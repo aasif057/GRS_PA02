@@ -7,8 +7,9 @@
 #include <string.h>
 
 #define BUFFER_SIZE 4096
-int n = 100000
+int n = 10000;
 int thread_count;
+int total_sum = 0;
 
 void *write_logs(void *arg) {
     int thread_id = *(int *)arg;
