@@ -8,27 +8,27 @@
 #include <errno.h>
 #include <malloc.h>
 
-#define buff_SIZE 4096 
+#define BUFFER_SIZE 4096 
 
 int n = 50000; //number of lines
 int thread_counts;
 
 void *rw_func(void *arg) {
     int thread_id = *(int *)arg;
-    char filename[50];
-    snprintf(filename, sizeof(filename), "thread_%d.txt", thread_id);
+    char f_name[50];
+    snprintf(f_name, sizeof(f_name), "thread_%d.txt", thread_id);
 
     void *buff; // Allocate aligned memory for O_DIRECT
     
-    if (posix_memalign(&buff, 512, buff_SIZE)) {
+    if (posix_memalign(&buff, 512, BUFFER_SIZE)) {
         perror("Memory alignment error");
         pthread_exit(NULL);
     }
-    memset(buff, 'A', buff_SIZE - 1);
-    ((char *)buff)[buff_SIZE - 1] = '\n';
+    memset(buff, 'A', BUFFER_SIZE - 1);
+    ((char *)buff)[BUFFER_SIZE - 1] = '\n';
 
     // Open file with O_DIRECT to bypass cache
-    int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC | O_DIRECT, 0644);
+    int fd = open(f_name, O_WRONLY | O_CREAT | O_TRUNC | O_DIRECT, 0644);
     if (fd < 0) {
         perror("File open error");
         free(buff);
@@ -36,8 +36,8 @@ void *rw_func(void *arg) {
     }
 
     // Write file in larger chunks to reduce CPU overhead
-    for (int i = 0; i < n; i += (buff_SIZE / 100)) {
-        if (write(fd, buff, buff_SIZE) < 0) {
+    for (int i = 0; i < n; i += (BUFFER_SIZE / 100)) {
+        if (write(fd, buff, BUFFER_SIZE) < 0) {
             perror("Write error");
             break;
         }
