@@ -1,6 +1,6 @@
 *.o
 *.out
-*.log
+*.zip
 *.swp
 cpu_bound
 memory_bound

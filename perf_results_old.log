@@ -1,0 +1,683 @@
+Performance Test Results
+------------------------
+Testing cpu_bound
+Threads: 1
+
+ Performance counter stats for './cpu_bound 1':
+
+           879,037      cache-references                 #  235.563 K/sec                     
+           216,653      cache-misses                     #   24.65% of all cache refs         
+            16,946      LLC-load-misses                                                       
+             8,984      LLC-store-misses                 #    2.408 K/sec                     
+          3,731.65 msec cpu-clock                        #    0.983 CPUs utilized             
+                21      context-switches                 #    5.628 /sec                      
+                 0      block:block_rq_complete          #    0.268 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       3.797587934 seconds time elapsed
+
+       3.730131000 seconds user
+       0.002000000 seconds sys
+
+
+
+real	0m4.912s
+user	0m0.003s
+sys	0m0.008s
+
+Threads: 2
+
+ Performance counter stats for './cpu_bound 2':
+
+         1,211,822      cache-references                 #  238.936 K/sec                     
+           181,839      cache-misses                     #   15.01% of all cache refs         
+            16,086      LLC-load-misses                                                       
+             7,872      LLC-store-misses                 #    1.552 K/sec                     
+          5,071.74 msec cpu-clock                        #    1.779 CPUs utilized             
+                20      context-switches                 #    3.943 /sec                      
+                 0      block:block_rq_complete          #    0.000 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       2.851358986 seconds time elapsed
+
+       5.069159000 seconds user
+       0.001999000 seconds sys
+
+
+
+real	0m2.911s
+user	0m0.009s
+sys	0m0.004s
+
+Threads: 4
+
+ Performance counter stats for './cpu_bound 4':
+
+         1,359,522      cache-references                 #  431.128 K/sec                     
+           193,189      cache-misses                     #   14.21% of all cache refs         
+            13,048      LLC-load-misses                                                       
+             7,905      LLC-store-misses                 #    2.507 K/sec                     
+          3,153.40 msec cpu-clock                        #    3.140 CPUs utilized             
+                16      context-switches                 #    5.074 /sec                      
+                 0      block:block_rq_complete          #    0.000 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       1.004391517 seconds time elapsed
+
+       3.150092000 seconds user
+       0.000999000 seconds sys
+
+
+
+real	0m1.046s
+user	0m0.002s
+sys	0m0.004s
+
+Threads: 8
+
+ Performance counter stats for './cpu_bound 8':
+
+         2,021,902      cache-references                 #  361.962 K/sec                     
+           271,820      cache-misses                     #   13.44% of all cache refs         
+            19,787      LLC-load-misses                                                       
+            12,446      LLC-store-misses                 #    2.228 K/sec                     
+          5,585.95 msec cpu-clock                        #    6.062 CPUs utilized             
+               357      context-switches                 #   63.910 /sec                      
+                 0      block:block_rq_complete          #    0.000 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       0.921395676 seconds time elapsed
+
+       5.575401000 seconds user
+       0.005980000 seconds sys
+
+
+
+real	0m0.966s
+user	0m0.002s
+sys	0m0.004s
+
+Threads: 16
+
+ Performance counter stats for './cpu_bound 16':
+
+         3,448,796      cache-references                 #  560.386 K/sec                     
+           472,433      cache-misses                     #   13.70% of all cache refs         
+            36,648      LLC-load-misses                                                       
+            24,038      LLC-store-misses                 #    3.906 K/sec                     
+          6,154.32 msec cpu-clock                        #    7.250 CPUs utilized             
+             1,391      context-switches                 #  226.020 /sec                      
+                 4      block:block_rq_complete          #    0.650 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       0.848887750 seconds time elapsed
+
+       6.136075000 seconds user
+       0.010966000 seconds sys
+
+
+
+real	0m0.891s
+user	0m0.001s
+sys	0m0.005s
+
+Threads: 50
+
+ Performance counter stats for './cpu_bound 50':
+
+         4,221,827      cache-references                 #  655.847 K/sec                     
+           498,322      cache-misses                     #   11.80% of all cache refs         
+            31,297      LLC-load-misses                                                       
+            55,995      LLC-store-misses                 #    8.699 K/sec                     
+          6,437.21 msec cpu-clock                        #    7.755 CPUs utilized             
+             1,667      context-switches                 #  258.963 /sec                      
+                 0      block:block_rq_complete          #    0.000 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       0.830045204 seconds time elapsed
+
+       6.405879000 seconds user
+       0.009948000 seconds sys
+
+
+
+real	0m0.876s
+user	0m0.004s
+sys	0m0.002s
+
+Threads: 100
+
+ Performance counter stats for './cpu_bound 100':
+
+         6,554,791      cache-references                 #    1.013 M/sec                     
+           813,268      cache-misses                     #   12.41% of all cache refs         
+            55,311      LLC-load-misses                                                       
+           107,542      LLC-store-misses                 #   16.616 K/sec                     
+          6,472.10 msec cpu-clock                        #    7.716 CPUs utilized             
+             2,074      context-switches                 #  320.453 /sec                      
+                 2      block:block_rq_complete          #    0.309 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       0.838742852 seconds time elapsed
+
+       6.422883000 seconds user
+       0.010906000 seconds sys
+
+
+
+real	0m0.886s
+user	0m0.002s
+sys	0m0.004s
+
+---------------------------------
+Testing memory_bound
+Threads: 1
+
+ Performance counter stats for './memory_bound 1':
+
+        25,995,149      cache-references                 #   14.841 M/sec                     
+        20,006,205      cache-misses                     #   76.96% of all cache refs         
+           458,122      LLC-load-misses                                                       
+         6,641,925      LLC-store-misses                 #    3.792 M/sec                     
+          1,751.62 msec cpu-clock                        #    0.984 CPUs utilized             
+                10      context-switches                 #    5.709 /sec                      
+                 0      block:block_rq_complete          #    0.000 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       1.779620415 seconds time elapsed
+
+       1.642449000 seconds user
+       0.108963000 seconds sys
+
+
+
+real	0m1.835s
+user	0m0.002s
+sys	0m0.005s
+
+Threads: 2
+
+ Performance counter stats for './memory_bound 2':
+
+        26,468,522      cache-references                 #    9.099 M/sec                     
+        19,728,267      cache-misses                     #   74.53% of all cache refs         
+           413,783      LLC-load-misses                                                       
+         6,626,170      LLC-store-misses                 #    2.278 M/sec                     
+          2,908.87 msec cpu-clock                        #    1.071 CPUs utilized             
+                29      context-switches                 #    9.969 /sec                      
+                 0      block:block_rq_complete          #    0.000 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       2.716357728 seconds time elapsed
+
+       2.720820000 seconds user
+       0.187987000 seconds sys
+
+
+
+real	0m2.766s
+user	0m0.002s
+sys	0m0.006s
+
+Threads: 4
+
+ Performance counter stats for './memory_bound 4':
+
+        26,895,225      cache-references                 #    8.609 M/sec                     
+        20,058,070      cache-misses                     #   74.58% of all cache refs         
+           403,990      LLC-load-misses                                                       
+         6,603,568      LLC-store-misses                 #    2.114 M/sec                     
+          3,124.02 msec cpu-clock                        #    1.051 CPUs utilized             
+                22      context-switches                 #    7.042 /sec                      
+                 0      block:block_rq_complete          #    0.000 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       2.972167378 seconds time elapsed
+
+       2.915489000 seconds user
+       0.207821000 seconds sys
+
+
+
+real	0m3.044s
+user	0m0.006s
+sys	0m0.005s
+
+Threads: 8
+
+ Performance counter stats for './memory_bound 8':
+
+        27,229,358      cache-references                 #   13.532 M/sec                     
+        20,047,015      cache-misses                     #   73.62% of all cache refs         
+           395,835      LLC-load-misses                                                       
+         6,580,126      LLC-store-misses                 #    3.270 M/sec                     
+          2,012.17 msec cpu-clock                        #    1.236 CPUs utilized             
+                34      context-switches                 #   16.897 /sec                      
+                 0      block:block_rq_complete          #    0.000 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       1.628526189 seconds time elapsed
+
+       1.882243000 seconds user
+       0.126747000 seconds sys
+
+
+
+real	0m1.669s
+user	0m0.002s
+sys	0m0.004s
+
+Threads: 16
+
+ Performance counter stats for './memory_bound 16':
+
+        26,764,354      cache-references                 #   13.000 M/sec                     
+        19,952,518      cache-misses                     #   74.55% of all cache refs         
+           392,251      LLC-load-misses                                                       
+         6,578,087      LLC-store-misses                 #    3.195 M/sec                     
+          2,058.75 msec cpu-clock                        #    1.225 CPUs utilized             
+               111      context-switches                 #   53.916 /sec                      
+                 0      block:block_rq_complete          #    0.000 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       1.680640324 seconds time elapsed
+
+       1.914860000 seconds user
+       0.137558000 seconds sys
+
+
+
+real	0m1.730s
+user	0m0.003s
+sys	0m0.003s
+
+Threads: 50
+
+ Performance counter stats for './memory_bound 50':
+
+        29,743,509      cache-references                 #   14.154 M/sec                     
+        20,140,481      cache-misses                     #   67.71% of all cache refs         
+           447,725      LLC-load-misses                                                       
+         6,675,996      LLC-store-misses                 #    3.177 M/sec                     
+          2,101.46 msec cpu-clock                        #    1.214 CPUs utilized             
+               285      context-switches                 #  135.620 /sec                      
+                 0      block:block_rq_complete          #    0.000 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       1.730371709 seconds time elapsed
+
+       1.955137000 seconds user
+       0.125215000 seconds sys
+
+
+
+real	0m1.779s
+user	0m0.002s
+sys	0m0.004s
+
+Threads: 100
+
+ Performance counter stats for './memory_bound 100':
+
+        28,927,536      cache-references                 #   14.054 M/sec                     
+        20,024,906      cache-misses                     #   69.22% of all cache refs         
+           412,105      LLC-load-misses                                                       
+         6,705,430      LLC-store-misses                 #    3.258 M/sec                     
+          2,058.36 msec cpu-clock                        #    1.236 CPUs utilized             
+               182      context-switches                 #   88.420 /sec                      
+                 0      block:block_rq_complete          #    0.000 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       1.665737815 seconds time elapsed
+
+       1.890117000 seconds user
+       0.126465000 seconds sys
+
+
+
+real	0m1.713s
+user	0m0.003s
+sys	0m0.003s
+
+---------------------------------
+Testing io_bound
+Threads: 1
+
+ Performance counter stats for './io_bound 1':
+
+         5,918,294      cache-references                 #  178.879 M/sec                     
+         3,440,984      cache-misses                     #   58.14% of all cache refs         
+           166,773      LLC-load-misses                                                       
+            39,539      LLC-store-misses                 #    1.195 M/sec                     
+             33.09 msec cpu-clock                        #    0.004 CPUs utilized             
+               518      context-switches                 #   15.656 K/sec                     
+                 0      block:block_rq_complete          #    0.000 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       9.302690764 seconds time elapsed
+
+       0.001420000 seconds user
+       0.036928000 seconds sys
+
+
+
+real	0m9.342s
+user	0m0.001s
+sys	0m0.005s
+
+Threads: 2
+
+ Performance counter stats for './io_bound 2':
+
+        12,730,372      cache-references                 #  182.731 M/sec                     
+         5,855,561      cache-misses                     #   46.00% of all cache refs         
+           329,232      LLC-load-misses                                                       
+            74,962      LLC-store-misses                 #    1.076 M/sec                     
+             69.67 msec cpu-clock                        #    0.004 CPUs utilized             
+             2,007      context-switches                 #   28.808 K/sec                     
+                 5      block:block_rq_complete          #   71.770 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+      17.443312487 seconds time elapsed
+
+       0.002453000 seconds user
+       0.087081000 seconds sys
+
+
+
+real	0m17.482s
+user	0m0.002s
+sys	0m0.004s
+
+Threads: 4
+
+ Performance counter stats for './io_bound 4':
+
+        24,127,807      cache-references                 #  177.762 M/sec                     
+         7,025,795      cache-misses                     #   29.12% of all cache refs         
+           452,100      LLC-load-misses                                                       
+           118,166      LLC-store-misses                 #  870.588 K/sec                     
+            135.73 msec cpu-clock                        #    0.008 CPUs utilized             
+             4,122      context-switches                 #   30.369 K/sec                     
+                 9      block:block_rq_complete          #   66.307 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+      16.748728155 seconds time elapsed
+
+       0.009907000 seconds user
+       0.169657000 seconds sys
+
+
+
+real	0m16.799s
+user	0m0.001s
+sys	0m0.005s
+
+Threads: 8
+
+ Performance counter stats for './io_bound 8':
+
+        42,482,794      cache-references                 #  146.715 M/sec                     
+        10,069,497      cache-misses                     #   23.70% of all cache refs         
+           766,207      LLC-load-misses                                                       
+           252,503      LLC-store-misses                 #  872.020 K/sec                     
+            289.56 msec cpu-clock                        #    0.018 CPUs utilized             
+             8,682      context-switches                 #   29.983 K/sec                     
+                14      block:block_rq_complete          #   48.349 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+      15.752596796 seconds time elapsed
+
+       0.010148000 seconds user
+       0.342799000 seconds sys
+
+
+
+real	0m15.794s
+user	0m0.002s
+sys	0m0.004s
+
+Threads: 16
+
+ Performance counter stats for './io_bound 16':
+
+        78,688,540      cache-references                 #  159.930 M/sec                     
+        14,243,170      cache-misses                     #   18.10% of all cache refs         
+         1,122,517      LLC-load-misses                                                       
+           542,482      LLC-store-misses                 #    1.103 M/sec                     
+            492.02 msec cpu-clock                        #    0.029 CPUs utilized             
+            17,115      context-switches                 #   34.785 K/sec                     
+                16      block:block_rq_complete          #   32.519 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+      16.974521573 seconds time elapsed
+
+       0.022582000 seconds user
+       0.525680000 seconds sys
+
+
+
+real	0m17.020s
+user	0m0.002s
+sys	0m0.005s
+
+Threads: 50
+
+ Performance counter stats for './io_bound 50':
+
+       208,769,360      cache-references                 #  147.920 M/sec                     
+        29,112,986      cache-misses                     #   13.95% of all cache refs         
+         2,519,446      LLC-load-misses                                                       
+         1,526,335      LLC-store-misses                 #    1.081 M/sec                     
+          1,411.37 msec cpu-clock                        #    0.013 CPUs utilized             
+            47,938      context-switches                 #   33.966 K/sec                     
+                89      block:block_rq_complete          #   63.059 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+     107.480505075 seconds time elapsed
+
+       0.027727000 seconds user
+       1.514723000 seconds sys
+
+
+
+real	1m47.520s
+user	0m0.001s
+sys	0m0.005s
+
+Threads: 100
+
+ Performance counter stats for './io_bound 100':
+
+       375,258,922      cache-references                 #  140.481 M/sec                     
+        48,991,870      cache-misses                     #   13.06% of all cache refs         
+         4,735,226      LLC-load-misses                                                       
+         2,692,613      LLC-store-misses                 #    1.008 M/sec                     
+          2,671.25 msec cpu-clock                        #    0.008 CPUs utilized             
+            82,895      context-switches                 #   31.032 K/sec                     
+               450      block:block_rq_complete          #  168.461 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+     347.995073138 seconds time elapsed
+
+       0.046283000 seconds user
+       2.914786000 seconds sys
+
+
+
+real	5m48.036s
+user	0m0.004s
+sys	0m0.002s
+
+---------------------------------
+Testing mixed_load
+Threads: 1
+
+ Performance counter stats for './mixed_load 1':
+
+        99,109,145      cache-references                 #  339.693 M/sec                     
+           972,039      cache-misses                     #    0.98% of all cache refs         
+            54,703      LLC-load-misses                                                       
+            81,362      LLC-store-misses                 #  278.865 K/sec                     
+            291.76 msec cpu-clock                        #    0.043 CPUs utilized             
+            10,027      context-switches                 #   34.367 K/sec                     
+                 0      block:block_rq_complete          #    0.000 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       6.809985234 seconds time elapsed
+
+       0.004610000 seconds user
+       0.291639000 seconds sys
+
+
+
+real	0m7.839s
+user	0m0.000s
+sys	0m0.007s
+
+Threads: 2
+
+ Performance counter stats for './mixed_load 2':
+
+       211,282,119      cache-references                 #  342.254 M/sec                     
+         1,809,240      cache-misses                     #    0.86% of all cache refs         
+           111,704      LLC-load-misses                                                       
+           151,278      LLC-store-misses                 #  245.054 K/sec                     
+            617.32 msec cpu-clock                        #    0.083 CPUs utilized             
+            20,058      context-switches                 #   32.492 K/sec                     
+                14      block:block_rq_complete          #   22.678 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       7.455497583 seconds time elapsed
+
+       0.005732000 seconds user
+       0.630604000 seconds sys
+
+
+
+real	0m7.496s
+user	0m0.004s
+sys	0m0.003s
+
+Threads: 4
+
+ Performance counter stats for './mixed_load 4':
+
+       441,546,631      cache-references                 #  350.527 M/sec                     
+         3,794,140      cache-misses                     #    0.86% of all cache refs         
+           227,804      LLC-load-misses                                                       
+           320,804      LLC-store-misses                 #  254.674 K/sec                     
+          1,259.66 msec cpu-clock                        #    0.129 CPUs utilized             
+            40,270      context-switches                 #   31.969 K/sec                     
+                16      block:block_rq_complete          #   12.702 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+       9.781091731 seconds time elapsed
+
+       0.025750000 seconds user
+       1.264969000 seconds sys
+
+
+
+real	0m9.824s
+user	0m0.003s
+sys	0m0.002s
+
+Threads: 8
+
+ Performance counter stats for './mixed_load 8':
+
+       891,979,037      cache-references                 #  348.644 M/sec                     
+         8,581,774      cache-misses                     #    0.96% of all cache refs         
+           530,614      LLC-load-misses                                                       
+           677,286      LLC-store-misses                 #  264.728 K/sec                     
+          2,558.42 msec cpu-clock                        #    0.148 CPUs utilized             
+            80,185      context-switches                 #   31.342 K/sec                     
+                38      block:block_rq_complete          #   14.853 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+      17.289398855 seconds time elapsed
+
+       0.038638000 seconds user
+       2.595206000 seconds sys
+
+
+
+real	0m17.347s
+user	0m0.002s
+sys	0m0.005s
+
+Threads: 16
+
+ Performance counter stats for './mixed_load 16':
+
+     1,833,523,432      cache-references                 #  350.634 M/sec                     
+        24,021,411      cache-misses                     #    1.31% of all cache refs         
+         1,632,105      LLC-load-misses                                                       
+         1,543,974      LLC-store-misses                 #  295.262 K/sec                     
+          5,229.16 msec cpu-clock                        #    0.097 CPUs utilized             
+           160,916      context-switches                 #   30.773 K/sec                     
+                79      block:block_rq_complete          #   15.108 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+      53.932953205 seconds time elapsed
+
+       0.101124000 seconds user
+       5.287040000 seconds sys
+
+
+
+real	0m53.991s
+user	0m0.000s
+sys	0m0.006s
+
+Threads: 50
+
+ Performance counter stats for './mixed_load 50':
+
+     5,599,357,180      cache-references                 #  316.559 M/sec                     
+       260,651,580      cache-misses                     #    4.66% of all cache refs         
+        23,298,537      LLC-load-misses                                                       
+         7,726,465      LLC-store-misses                 #  436.815 K/sec                     
+         17,688.19 msec cpu-clock                        #    0.031 CPUs utilized             
+           515,623      context-switches                 #   29.151 K/sec                     
+               251      block:block_rq_complete          #   14.190 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+     577.310586873 seconds time elapsed
+
+       0.423690000 seconds user
+      18.420103000 seconds sys
+
+
+
+real	9m37.355s
+user	0m0.001s
+sys	0m0.005s
+
+Threads: 100
+./mixed_load: Interrupt
+
+ Performance counter stats for './mixed_load 100':
+
+     1,045,716,236      cache-references                 #  227.142 M/sec                     
+        81,520,799      cache-misses                     #    7.80% of all cache refs         
+         7,490,383      LLC-load-misses                                                       
+         2,615,019      LLC-store-misses                 #  568.013 K/sec                     
+          4,603.80 msec cpu-clock                        #    0.023 CPUs utilized             
+           155,258      context-switches                 #   33.724 K/sec                     
+               116      block:block_rq_complete          #   25.197 /sec                      
+                 0      sched:sched_stat_sleep           #    0.000 /sec                      
+
+     203.994428461 seconds time elapsed
+
+       0.078701000 seconds user
+       5.271978000 seconds sys
+
+
+
+real	3m24.038s
+user	0m0.002s
+sys	0m0.004s
+
+---------------------------------
