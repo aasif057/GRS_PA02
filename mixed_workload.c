@@ -101,7 +101,7 @@ int main(int argc, char *argv[]) {
     double elapsed = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
 
     printf("Execution Time: %f seconds\n", elapsed);
-    printf("Total Sum: %d\n", total_sum);
+    // printf("Total Sum: %d\n", total_sum);
 
     pthread_mutex_destroy(&sum_lock);
     sync();  // Ensure all writes are flushed to disk
